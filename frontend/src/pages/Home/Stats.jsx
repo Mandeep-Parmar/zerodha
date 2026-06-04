@@ -5,7 +5,7 @@ const Stats = () => {
     <div className="container py-5">
       <div className="row  align-items-center">
         {/* Left content */}
-        <div className="col-lg-6 col-md-12 mb-4 mb-lg-0 lg-px-5">
+        <div className="col-lg-6 col-md-12 mb-4 mb-lg-0 px-lg-5">
           <h2 className="mb-5">Trust with confidence</h2>
 
           <h4 className="fw-semibold">Customer-first always</h4>
@@ -42,6 +42,7 @@ const Stats = () => {
             src="/media/images/ecosystem.png"
             alt="ecosystem"
             className="mb-5 img-fluid mt-4"
+            style={{ maxWidth: "90%" }}
           />
         </div>
       </div>

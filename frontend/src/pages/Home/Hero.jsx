@@ -9,6 +9,7 @@ const Hero = () => {
             src="media/images/homeHeroOg.svg"
             alt="hero"
             className="mb-5 img-fluid"
+            style={{ maxWidth: "90%" }}
           />
           <h1 className="mt-5">Invest in everything</h1>
           <p className="fs-5 mb-5 text-muted">
