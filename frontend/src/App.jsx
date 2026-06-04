@@ -1,9 +1,16 @@
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
+import HomePage from "./pages/Home/HomePage"
 
 function App() {
 
   return (
     <>
-      hello world
+      <Navbar />
+
+      <HomePage />
+
+      <Footer />
     </>
   )
 }
