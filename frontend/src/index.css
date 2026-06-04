@@ -1,0 +1,18 @@
+.navbar {
+  background-color: #fff;
+}
+
+.nav-link {
+  color: #666;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #387ed1;
+}
+
+.footer-text {
+  font-size: 0.7rem;
+  color: #9b9b9b;
+  line-height: 1.7;
+}
