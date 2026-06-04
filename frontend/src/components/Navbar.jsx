@@ -1,13 +1,14 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-white sticky-top border-bottom py-2">
       <div className="container py-2 px-lg-5">
         {/* Logo */}
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
           <img src="/media/images/logo.svg" alt="Zerodha Logo" width="140" />
-        </a>
+        </Link>
 
         {/* Mobile Toggle */}
         <button
@@ -27,29 +28,29 @@ const Navbar = () => {
           {/* Push items to right */}
           <ul className="navbar-nav ms-auto gap-3">
             <li className="nav-item">
-              <a className="nav-link" aria-current="page" href="#">
+              <NavLink className="nav-link" aria-current="page" to="/signup">
                 Signup
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <NavLink className="nav-link" to="/about">
                 About
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <NavLink className="nav-link" to="/product">
                 Products
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <NavLink className="nav-link" to="/pricing">
                 Pricing
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <NavLink className="nav-link" to="/support">
                 Support
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>
