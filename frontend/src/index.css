@@ -21,3 +21,9 @@ a.active {
   color: #387ed1 !important;
   font-weight: 700;
 }
+
+.product-text {
+  font-size: 0.85rem;
+  color: #9b9b9b;
+  line-height: 1.7;
+}
