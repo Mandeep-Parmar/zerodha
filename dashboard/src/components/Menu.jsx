@@ -8,9 +8,6 @@ const Menu = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
   };
 
-  const menuClass = "menu";
-  const activeMenuClass = "menu selected";
-
   return (
     <div className="menu-container">
       <img src="logo.png" style={{ width: "50px" }} />
