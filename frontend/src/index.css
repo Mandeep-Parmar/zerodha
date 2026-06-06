@@ -37,3 +37,20 @@ a.active {
 .brokerage-list li {
   margin-bottom: 0.6rem;
 }
+
+.support-hero {
+  background-color: #387ed1;
+}
+
+.support-hero input {
+  border-radius: 6px;
+  border: none;
+}
+
+.support-hero input::placeholder {
+  color: #888;
+}
+
+.support-hero a:hover {
+  opacity: 0.8;
+}
