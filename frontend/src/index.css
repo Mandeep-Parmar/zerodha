@@ -27,3 +27,13 @@ a.active {
   color: #9b9b9b;
   line-height: 1.7;
 }
+
+.brokerage-list {
+  line-height: 1.8;
+  font-size: 0.95rem;
+  padding-left: 1rem;
+}
+
+.brokerage-list li {
+  margin-bottom: 0.6rem;
+}
