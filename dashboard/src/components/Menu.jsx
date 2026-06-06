@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Menu = () => {
-  const handleProfileClick = () => {};
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+
+  const handleProfileClick = () => {
+    setIsProfileDropdownOpen(!isProfileDropdownOpen);
+  };
+
+  const menuClass = "menu";
+  const activeMenuClass = "menu selected";
 
   return (
     <div className="menu-container">
@@ -9,19 +17,59 @@ const Menu = () => {
       <div className="menus">
         <ul>
           <li>
-            <p>Dashboard</p>
+            <NavLink
+              to={"/"}
+              style={{ textDecoration: "none" }}
+              className={({ isActive }) =>
+                isActive ? "menu selected" : "menu"
+              }
+            >
+              Dashboard
+            </NavLink>
           </li>
           <li>
-            <p>Orders</p>
+            <NavLink
+              to={"/orders"}
+              style={{ textDecoration: "none" }}
+              className={({ isActive }) =>
+                isActive ? "menu selected" : "menu"
+              }
+            >
+              Orders
+            </NavLink>
           </li>
           <li>
-            <p>Holdings</p>
+            <NavLink
+              to={"/holdings"}
+              style={{ textDecoration: "none" }}
+              className={({ isActive }) =>
+                isActive ? "menu selected" : "menu"
+              }
+            >
+              Holdings
+            </NavLink>
           </li>
           <li>
-            <p>Positions</p>
+            <NavLink
+              to={"/positions"}
+              style={{ textDecoration: "none" }}
+              className={({ isActive }) =>
+                isActive ? "menu selected" : "menu"
+              }
+            >
+              Positions
+            </NavLink>
           </li>
           <li>
-            <p>Funds</p>
+            <NavLink
+              to={"/funds"}
+              style={{ textDecoration: "none" }}
+              className={({ isActive }) =>
+                isActive ? "menu selected" : "menu"
+              }
+            >
+              Funds
+            </NavLink>
           </li>
         </ul>
         <hr />
