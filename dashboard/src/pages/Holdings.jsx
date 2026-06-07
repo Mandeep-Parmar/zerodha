@@ -1,8 +1,25 @@
 import React from "react";
+import axios from "axios";
 
-import { holdings } from "../data/data";
+import { useState, useEffect } from "react";
 
 const Holdings = () => {
+  const [holdings, setHoldings] = useState([]);
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+  const fetchHoldings = async () => {
+    try {
+      const res = await axios.get(`${backendUrl}/api/holdings`);
+      setHoldings(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchHoldings();
+  }, []);
+
   return (
     <>
       <h3 className="title">Holdings ({holdings.length})</h3>
