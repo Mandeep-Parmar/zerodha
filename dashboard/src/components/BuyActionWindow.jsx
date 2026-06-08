@@ -5,7 +5,7 @@ import "./BuyActionWindow.css";
 import axios from "axios";
 
 const BuyActionWindow = ({ uid }) => {
-  const { handleCloseBuyWindow } = useContext(GeneralContext);
+  const { handleCloseBuyWindow, orderMode } = useContext(GeneralContext);
 
   const [qty, setQty] = useState(1);
   const [price, setPrice] = useState(0);
@@ -22,7 +22,7 @@ const BuyActionWindow = ({ uid }) => {
         name: uid,
         qty: Number(qty),
         price: Number(price),
-        mode: "BUY",
+        mode: orderMode,
       });
 
       alert("Order placed ✅");
@@ -62,9 +62,12 @@ const BuyActionWindow = ({ uid }) => {
       <div className="buttons">
         <span>Margin required ₹140.65</span>
         <div>
-          <Link className="btn btn-blue" onClick={handleBuyClick}>
-            Buy
-          </Link>
+          <button
+            className={`btn ${orderMode === "BUY" ? "btn-blue" : "btn-red"}`}
+            onClick={handleBuyClick}
+          >
+            {orderMode}
+          </button>
           <Link to="" className="btn btn-grey" onClick={handleCancleClick}>
             Cancel
           </Link>

@@ -12,13 +12,21 @@ const WatchListActions = ({ uid }) => {
     <span className="actions">
       <span>
         <Tooltip title="Buy (B)" placement="top" arrow>
-          <button className="buy" onClick={() => handleOpenBuyWindow(uid)}>
+          <button
+            className="buy"
+            onClick={() => handleOpenBuyWindow(uid, "BUY")}
+          >
             Buy
           </button>
         </Tooltip>
 
         <Tooltip title="Sell (S)" placement="top" arrow>
-          <button className="sell">Sell</button>
+          <button
+            className="sell"
+            onClick={() => handleOpenBuyWindow(uid, "SELL")}
+          >
+            Sell
+          </button>
         </Tooltip>
 
         <Tooltip title="Analytics (A)" placement="top" arrow>

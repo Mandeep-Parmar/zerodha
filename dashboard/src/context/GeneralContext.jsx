@@ -5,10 +5,12 @@ export const GeneralContext = createContext();
 const GeneralContextProvider = (props) => {
   const [isBuyWindowOpen, setIsBuyWindowOpen] = useState(false);
   const [selectedStockUID, setSelectedStockUID] = useState("");
+  const [orderMode, setOrderMode] = useState("BUY");
 
-  const handleOpenBuyWindow = (uid) => {
+  const handleOpenBuyWindow = (uid, mode) => {
     setIsBuyWindowOpen(true);
     setSelectedStockUID(uid);
+    setOrderMode(mode);
   };
 
   const handleCloseBuyWindow = () => {
@@ -19,6 +21,7 @@ const GeneralContextProvider = (props) => {
   const value = {
     isBuyWindowOpen,
     selectedStockUID,
+    orderMode,
     handleCloseBuyWindow,
     handleOpenBuyWindow,
   };
