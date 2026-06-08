@@ -5,6 +5,6 @@ export const getHoldings = async (req, res) => {
     const holdings = await HoldingModel.find();
     res.json(holdings);
   } catch (error) {
-    res.json({ message: "Error fetching holdings" });
+    res.json({ sucess: false, message: "Error fetching holdings" });
   }
 };

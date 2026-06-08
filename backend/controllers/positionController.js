@@ -5,6 +5,6 @@ export const getPosition = async (req, res) => {
     const positions = await PositionModel.find();
     res.json(positions);
   } catch (error) {
-    res.json({ message: "Error fetching postions" });
+    res.json({ sucess: false, message: "Error fetching postions" });
   }
 };
