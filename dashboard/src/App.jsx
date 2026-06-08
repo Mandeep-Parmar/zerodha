@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import Topbar from "./components/TopBar";
 import Summary from "./pages/Summary";
@@ -8,7 +8,12 @@ import Positions from "./pages/Positions";
 import Funds from "./pages/Funds";
 import WatchList from "./components/WatchList";
 
+import { GeneralContext } from "./context/GeneralContext";
+import BuyActionWindow from "./components/BuyActionWindow";
+
 const App = () => {
+  const { isBuyWindowOpen, selectedStockUID } = useContext(GeneralContext);
+
   return (
     <>
       <Topbar />
@@ -25,6 +30,8 @@ const App = () => {
             <Route path="/funds" element={<Funds />} />
           </Routes>
         </div>
+
+        {isBuyWindowOpen && <BuyActionWindow uid={selectedStockUID} />}
       </div>
     </>
   );
