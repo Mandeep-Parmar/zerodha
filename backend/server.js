@@ -1,10 +1,10 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
 import connectDB from "./config/mongodb.js";
 import holdingRouter from "./routes/holdingRoute.js";
 import positionRouter from "./routes/positionRoute.js";
+import orderRouter from "./routes/OrderRoute.js";
 
 const app = express();
 connectDB();
@@ -18,6 +18,7 @@ const port = process.env.PORT || 4000;
 // api routes
 app.use("/api/holdings", holdingRouter);
 app.use("/api/positions", positionRouter);
+app.use("/api/products", orderRouter);
 
 app.get("/", (req, res) => {
   res.send("API Working");
