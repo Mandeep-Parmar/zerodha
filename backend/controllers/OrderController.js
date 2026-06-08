@@ -22,3 +22,12 @@ export const placeOrder = async (req, res) => {
     res.json({ error: "Failed to place order" });
   }
 };
+
+export const getOrders = async (req, res) => {
+  try {
+    const orders = await OrderModel.find();
+    res.json(orders);
+  } catch (error) {
+    res.json({ error: "Failed to fetch orders" });
+  }
+};
