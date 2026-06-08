@@ -18,6 +18,10 @@ const orderSchema = mongoose.Schema({
     required: true,
     enum: ["BUY", "SELL"],
   },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  },
 });
 
 const OrderModel = mongoose.model("Order", orderSchema);

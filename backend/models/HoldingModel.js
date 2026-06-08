@@ -25,6 +25,10 @@ const holdingSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  },
 });
 
 const HoldingModel = mongoose.model("Holding", holdingSchema);
