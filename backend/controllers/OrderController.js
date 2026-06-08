@@ -5,30 +5,36 @@ export const placeOrder = async (req, res) => {
   try {
     const { name, qty, price, mode } = req.body;
 
-    // 1. Find existing holding first
-    let existingHolding = await HoldingModel.findOne({ name });
-
     // ================= VALIDATION =================
     if (!name || !qty || !price || !mode) {
-      return res.json({ sucess: false, message: "All fields are required" });
+      return res.json({ success: false, message: "All fields are required" });
     }
 
     if (qty <= 0 || price <= 0) {
-      return res.json({ sucess: false, message: "Invalid qty or price" });
+      return res.json({ success: false, message: "Invalid qty or price" });
     }
 
     if (!["BUY", "SELL"].includes(mode)) {
-      return res.json({ sucess: false, message: "Invalid order mode" });
+      return res.json({ success: false, message: "Invalid order mode" });
     }
+
+    // 1. Find existing holding first
+    let existingHolding = await HoldingModel.findOne({ name });
 
     // ===== SELL VALIDATION =====
     if (mode === "SELL") {
       if (!existingHolding) {
-        return res.json({ sucess: false, message: "No holding found to sell" });
+        return res.json({
+          success: false,
+          message: "No holding found to sell",
+        });
       }
 
       if (existingHolding.qty < qty) {
-        return res.json({ sucess: false, message: "Not enough stock to sell" });
+        return res.json({
+          success: false,
+          message: "Not enough stock to sell",
+        });
       }
     }
 
@@ -80,13 +86,13 @@ export const placeOrder = async (req, res) => {
     }
 
     res.json({
-      sucess: true,
+      success: true,
       message: "Order placed & holdings updated",
       order: newOrder,
     });
   } catch (error) {
     console.log(error);
-    res.json({ sucess: false, message: "Failed to place order" });
+    res.json({ success: false, message: "Failed to place order" });
   }
 };
 
@@ -95,6 +101,6 @@ export const getOrders = async (req, res) => {
     const orders = await OrderModel.find();
     res.json(orders);
   } catch (error) {
-    res.json({ sucess: false, message: "Failed to fetch orders" });
+    res.json({ success: false, message: "Failed to fetch orders" });
   }
 };
