@@ -5,6 +5,7 @@ import connectDB from "./config/mongodb.js";
 import holdingRouter from "./routes/holdingRoute.js";
 import positionRouter from "./routes/positionRoute.js";
 import orderRouter from "./routes/OrderRoute.js";
+import userRouter from "./routes/userRoute.js";
 
 const app = express();
 connectDB();
@@ -19,6 +20,7 @@ const port = process.env.PORT || 4000;
 app.use("/api/holdings", holdingRouter);
 app.use("/api/positions", positionRouter);
 app.use("/api/orders", orderRouter);
+app.use("/api/users", userRouter);
 
 app.get("/", (req, res) => {
   res.send("API Working");
