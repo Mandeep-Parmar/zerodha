@@ -7,6 +7,7 @@ import Holdings from "./pages/Holdings";
 import Positions from "./pages/Positions";
 import Funds from "./pages/Funds";
 import WatchList from "./components/WatchList";
+import { ToastContainer } from "react-toastify";
 
 import { GeneralContext } from "./context/GeneralContext";
 import BuyActionWindow from "./components/BuyActionWindow";
@@ -16,6 +17,7 @@ const App = () => {
 
   return (
     <>
+      <ToastContainer />
       <Topbar />
 
       <div className="dashboard-container">

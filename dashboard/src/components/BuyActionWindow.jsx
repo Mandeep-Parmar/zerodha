@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { GeneralContext } from "../context/GeneralContext";
 import "./BuyActionWindow.css";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const BuyActionWindow = ({ uid }) => {
   const { handleCloseBuyWindow, orderMode } = useContext(GeneralContext);
@@ -18,18 +19,22 @@ const BuyActionWindow = ({ uid }) => {
 
   const handleBuyClick = async () => {
     try {
-      await axios.post(`${backendUrl}/api/orders`, {
+      const res = await axios.post(`${backendUrl}/api/orders`, {
         name: uid,
         qty: Number(qty),
         price: Number(price),
         mode: orderMode,
       });
 
-      alert("Order placed ✅");
-      handleCloseBuyWindow();
+      if (res.data.success) {
+        toast.success(res.data.message);
+        handleCloseBuyWindow();
+      } else {
+        toast.error(res.data.message);
+      }
     } catch (error) {
       console.log(error);
-      alert("Order failed ❌");
+      toast.error(error.message);
     }
   };
 
@@ -44,6 +49,7 @@ const BuyActionWindow = ({ uid }) => {
               name="qty"
               id="qty"
               onChange={(e) => setQty(e.target.value)}
+              required
             />
           </fieldset>
           <fieldset>
@@ -54,6 +60,7 @@ const BuyActionWindow = ({ uid }) => {
               id="price"
               step="0.05"
               onChange={(e) => setPrice(e.target.value)}
+              required
             />
           </fieldset>
         </div>
