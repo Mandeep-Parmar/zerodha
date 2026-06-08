@@ -18,7 +18,7 @@ const port = process.env.PORT || 4000;
 // api routes
 app.use("/api/holdings", holdingRouter);
 app.use("/api/positions", positionRouter);
-app.use("/api/products", orderRouter);
+app.use("/api/orders", orderRouter);
 
 app.get("/", (req, res) => {
   res.send("API Working");
