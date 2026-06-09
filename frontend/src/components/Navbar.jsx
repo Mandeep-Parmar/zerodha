@@ -10,6 +10,18 @@ const Navbar = () => {
     window.location.reload();
   };
 
+  const handleGoToDashboard = () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      return (window.location.href = "/login");
+    }
+
+    const encodedToken = encodeURIComponent(token);
+
+    window.location.href = `http://localhost:5174?token=${encodedToken}`;
+  };
+
   return (
     <nav className="navbar navbar-expand-lg bg-white sticky-top border-bottom py-2">
       <div className="container py-2 px-lg-5">
@@ -39,13 +51,13 @@ const Navbar = () => {
             {token ? (
               <>
                 <li className="nav-item">
-                  <a
+                  <button
+                    onClick={handleGoToDashboard}
                     className="nav-link btn btn-link text-primary border-0 p-0"
-                    href="http://localhost:5174"
                     style={{ borderRadius: "4px" }}
                   >
                     Go to Dashboard
-                  </a>
+                  </button>
                 </li>
                 <li className="nav-item">
                   <button
