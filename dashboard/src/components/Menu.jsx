@@ -32,7 +32,8 @@ const Menu = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
 
-    window.location.href = "http://localhost:5173/login";
+    // Redirect to frontend logout handler
+    window.location.href = "http://localhost:5173/logout";
   };
 
   const avatarText = user.username

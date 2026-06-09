@@ -9,6 +9,7 @@ import Funds from "./pages/Funds";
 import WatchList from "./components/WatchList";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
+import Logout from "./pages/Logout";
 
 import { GeneralContext } from "./context/GeneralContext";
 import BuyActionWindow from "./components/BuyActionWindow";
@@ -23,6 +24,16 @@ const App = () => {
 
   useEffect(() => {
     const checkAuth = async () => {
+      // Check if logout route is hit on the dashboard
+      if (window.location.pathname === "/logout") {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        setToken("");
+        // Redirect to frontend login page
+        window.location.href = "http://localhost:5173/login";
+        return;
+      }
+
       // STEP 1: Check if token is coming from URL (after login redirect)
       const queryParams = new URLSearchParams(window.location.search);
       const queryToken = queryParams.get("token");
@@ -110,6 +121,8 @@ const App = () => {
             <Route path="/holdings" element={<Holdings />} />
             <Route path="/positions" element={<Positions />} />
             <Route path="/funds" element={<Funds />} />
+            {/* this is only call when frontend logout occur  */}
+            <Route path="/logout" element={<Logout />} />
           </Routes>
         </div>
 

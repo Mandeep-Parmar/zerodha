@@ -7,7 +7,9 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    window.location.reload();
+
+    // Redirect to dashboard logout route
+    window.location.href = "http://localhost:5174/logout";
   };
 
   const handleGoToDashboard = () => {
