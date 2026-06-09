@@ -9,7 +9,9 @@ const Navbar = () => {
     localStorage.removeItem("user");
 
     // Redirect to dashboard logout route
-    window.location.href = "http://localhost:5174/logout";
+    const dashboardUrl =
+      import.meta.env.VITE_DASHBOARD_URL || "http://localhost:5174";
+    window.location.href = `${dashboardUrl}/logout`;
   };
 
   const handleGoToDashboard = () => {
@@ -20,8 +22,10 @@ const Navbar = () => {
     }
 
     const encodedToken = encodeURIComponent(token);
+    const dashboardUrl =
+      import.meta.env.VITE_DASHBOARD_URL || "http://localhost:5174";
 
-    window.location.href = `http://localhost:5174?token=${encodedToken}`;
+    window.location.href = `${dashboardUrl}?token=${encodedToken}`;
   };
 
   return (

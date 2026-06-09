@@ -7,7 +7,9 @@ const Logout = () => {
     localStorage.removeItem("user");
 
     // Redirect back to login app
-    window.location.href = "http://localhost:5173/login";
+    const frontendUrl =
+      import.meta.env.VITE_FRONTEND_URL || "http://localhost:5173";
+    window.location.href = `${frontendUrl}/login`;
   }, []);
 
   return (

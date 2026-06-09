@@ -24,7 +24,6 @@ const App = () => {
 
   useEffect(() => {
     const checkAuth = async () => {
-
       // STEP 1: Check if token is coming from URL (after login redirect)
       const queryParams = new URLSearchParams(window.location.search);
       const queryToken = queryParams.get("token");
@@ -80,11 +79,13 @@ const App = () => {
 
   // Redirect helper
   const redirectToLogin = () => {
-    const loginUrl = "http://localhost:5173/login";
-    const dashboardUrl = "http://localhost:5174";
+    const frontendUrl =
+      import.meta.env.VITE_FRONTEND_URL || "http://localhost:5173";
+    const dashboardUrl =
+      import.meta.env.VITE_DASHBOARD_URL || "http://localhost:5174";
 
     // Send user to login with redirect back to dashboard
-    window.location.href = `${loginUrl}?redirect=${dashboardUrl}`;
+    window.location.href = `${frontendUrl}/login?redirect=${dashboardUrl}`;
   };
 
   // Show loading UI while checking authentication
