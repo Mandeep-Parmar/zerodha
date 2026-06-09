@@ -103,7 +103,7 @@ const Signup = () => {
             <label htmlFor="password">Password</label>
             <div className="input-wrapper">
               <span className="input-icon">
-                <i class="fa-solid fa-lock"></i>
+                <i className="fa-solid fa-lock"></i>
               </span>
               <input
                 type={showPassword ? "text" : "password"}

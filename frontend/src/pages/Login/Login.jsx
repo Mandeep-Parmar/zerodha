@@ -52,7 +52,10 @@ const Login = () => {
           }, 1000);
         } else {
           setTimeout(() => {
-            navigate("/");
+            // IMPORTANT: force reload so Navbar updates
+            window.location.href = "/";
+            // navigate("/") → only changes route (no re-render of token)
+            // window.location.href → full reload → Navbar reads new token
           }, 1000);
         }
       } else {
@@ -60,9 +63,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Login error:", error);
-      toast.error(
-        error.message || "An error occurred during login",
-      );
+      toast.error(error.message || "An error occurred during login");
     } finally {
       setIsLoading(false);
     }
@@ -102,7 +103,7 @@ const Login = () => {
             <label htmlFor="password">Password</label>
             <div className="input-wrapper">
               <span className="input-icon">
-                <i class="fa-solid fa-lock"></i>
+                <i className="fa-solid fa-lock"></i>
               </span>
               <input
                 type={showPassword ? "text" : "password"}
