@@ -250,7 +250,6 @@ code {
 }
 
 .menu-container {
-  
   flex-basis: 68%;
   height: 100%;
   padding: 10px 20px;
@@ -266,7 +265,6 @@ code {
 }
 
 .menus {
-  
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -288,7 +286,7 @@ code {
   text-decoration: none;
 }
 
-.menus p{
+.menus p {
   margin: 0;
 }
 
@@ -309,7 +307,7 @@ hr {
 
 .profile {
   display: flex;
-  align-items: center; 
+  align-items: center;
   gap: 10px;
   margin-left: 20px;
 }
@@ -336,7 +334,7 @@ hr {
   margin: 0;
 
   display: flex;
-  align-items: center; 
+  align-items: center;
 }
 
 /* sudo selectors */
@@ -855,4 +853,38 @@ hr {
 
 .action:hover {
   background-color: rgb(212, 212, 212);
+}
+
+.loaderContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f8f9fa;
+}
+
+.spinner {
+  border: 4px solid #eee;
+  border-top: 4px solid #387ed1;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+.text {
+  margin-top: 10px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
