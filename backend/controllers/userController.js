@@ -94,8 +94,37 @@ export const loginUser = async (req, res) => {
       success: true,
       message: "Login successful",
       token,
+      user: {
+        username: user.username,
+        email: user.email,
+      },
     });
   } catch (error) {
     res.json({ success: false, message: "Login failed" });
+  }
+};
+
+export const getUserProfile = async (req, res) => {
+  try {
+    // req.user.id comes from auth middleware (JWT decoded)
+    // It means user is already verified before reaching here
+    const user = await UserModel.findById(req.user.id);
+
+    if (!user) {
+      return res.json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      user: {
+        username: user.username,
+        email: user.email,
+      },
+    });
+  } catch (error) {
+    res.json({ success: false, message: "Failed to fetch user profile" });
   }
 };
