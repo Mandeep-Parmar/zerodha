@@ -10,6 +10,7 @@ import WatchList from "./components/WatchList";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
 import Logout from "./pages/Logout";
+import NotFound from "./pages/NotFound";
 
 import { GeneralContext } from "./context/GeneralContext";
 import BuyActionWindow from "./components/BuyActionWindow";
@@ -115,6 +116,7 @@ const App = () => {
             <Route path="/funds" element={<Funds />} />
             {/* this is only call when frontend logout occur  */}
             <Route path="/logout" element={<Logout />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
 
