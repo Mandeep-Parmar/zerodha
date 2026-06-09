@@ -5,7 +5,6 @@ const Logout = () => {
     // Clear dashboard storage
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    setToken("");
 
     // Redirect back to login app
     window.location.href = "http://localhost:5173/login";

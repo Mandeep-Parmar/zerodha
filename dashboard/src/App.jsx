@@ -24,15 +24,6 @@ const App = () => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      // Check if logout route is hit on the dashboard
-      if (window.location.pathname === "/logout") {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        setToken("");
-        // Redirect to frontend login page
-        window.location.href = "http://localhost:5173/login";
-        return;
-      }
 
       // STEP 1: Check if token is coming from URL (after login redirect)
       const queryParams = new URLSearchParams(window.location.search);
