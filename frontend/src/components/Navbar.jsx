@@ -2,6 +2,14 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const token = localStorage.getItem("token");
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.reload();
+  };
+
   return (
     <nav className="navbar navbar-expand-lg bg-white sticky-top border-bottom py-2">
       <div className="container py-2 px-lg-5">
@@ -26,12 +34,49 @@ const Navbar = () => {
         {/* Right Side */}
         <div className="collapse navbar-collapse" id="navbarNav">
           {/* Push items to right */}
-          <ul className="navbar-nav ms-auto gap-3">
-            <li className="nav-item">
-              <NavLink className="nav-link" aria-current="page" to="/signup">
-                Signup
-              </NavLink>
-            </li>
+          <ul className="navbar-nav ms-auto gap-3 align-items-center">
+            {/* If token exist (user logged in) then show logout and go to dashboard */}
+            {token ? (
+              <>
+                <li className="nav-item">
+                  <a
+                    className="nav-link btn btn-link text-primary border-0 p-0"
+                    href="http://localhost:5174"
+                    style={{ borderRadius: "4px" }}
+                  >
+                    Go to Dashboard
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <button
+                    className="nav-link btn btn-link text-danger border-0 p-0"
+                    onClick={handleLogout}
+                    style={{ background: "none", cursor: "pointer" }}
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              // if token doesn't exist then show login and signup
+              <>
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    aria-current="page"
+                    to="/signup"
+                  >
+                    Signup
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/login">
+                    Login
+                  </NavLink>
+                </li>
+              </>
+            )}
+
             <li className="nav-item">
               <NavLink className="nav-link" to="/about">
                 About
