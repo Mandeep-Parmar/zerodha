@@ -103,7 +103,7 @@ code {
   justify-content: space-between;
 }
 
-.table .data>* {
+.table .data > * {
   margin-bottom: 5%;
 }
 
@@ -615,8 +615,8 @@ hr {
   justify-content: space-evenly;
 }
 
-.nifty>*,
-.sensex>* {
+.nifty > *,
+.sensex > * {
   margin-right: 8px;
 }
 
@@ -706,7 +706,7 @@ hr {
   align-items: center;
 }
 
-.item-info>* {
+.item-info > * {
   margin-right: 8px;
 }
 
@@ -825,7 +825,7 @@ hr {
   background-color: #f3f3f3;
 }
 
-.list li:hover>.actions {
+.list li:hover > .actions {
   display: flex;
   cursor: move;
 }
@@ -1016,7 +1016,6 @@ hr {
 }
 
 @keyframes floatIcon {
-
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
@@ -1079,4 +1078,13 @@ hr {
   background: #e24912;
   box-shadow: 0 6px 16px rgba(245, 104, 52, 0.3);
   transform: translateY(-1px);
+}
+
+/* Global Profit and Loss Colors */
+.profit {
+  color: rgb(72, 194, 55) !important;
+}
+
+.loss {
+  color: rgb(250, 118, 78) !important;
 }

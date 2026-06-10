@@ -8,6 +8,22 @@ const Holdings = () => {
   const [holdings, setHoldings] = useState([]);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
+  const totalInvestment = holdings.reduce(
+    (sum, stock) => sum + stock.qty * stock.avg,
+    0,
+  );
+
+  const currentValue = holdings.reduce(
+    (sum, stock) => sum + stock.qty * stock.price,
+    0,
+  );
+
+  const pnl = currentValue - totalInvestment;
+
+  const pnlPercent = totalInvestment > 0 ? (pnl / totalInvestment) * 100 : 0;
+
+  const isProfit = pnl >= 0;
+
   const fetchHoldings = async () => {
     try {
       const res = await axios.get(`${backendUrl}/api/holdings`);
@@ -82,18 +98,26 @@ const Holdings = () => {
       <div className="row">
         <div className="col">
           <h5>
-            29,875.<span>55</span>{" "}
+            {totalInvestment.toLocaleString("en-IN", {
+              minimumFractionDigits: 2,
+            })}
           </h5>
           <p>Total investment</p>
         </div>
         <div className="col">
           <h5>
-            31,428.<span>95</span>{" "}
+            {currentValue.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
           </h5>
           <p>Current value</p>
         </div>
         <div className="col">
-          <h5>1,553.40 (+5.20%)</h5>
+          <h5 className={isProfit ? "profit" : "loss"}>
+            ₹{pnl.toLocaleString("en-IN", { minimumFractionDigits: 2 })}{" "}
+            <small>
+              ({isProfit ? "+" : ""}
+              {pnlPercent.toFixed(2)}%)
+            </small>
+          </h5>
           <p>P&L</p>
         </div>
       </div>

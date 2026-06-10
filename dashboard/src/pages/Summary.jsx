@@ -107,7 +107,10 @@ const Summary = () => {
           <div className="first">
             <h3 className={isProfit ? "profit" : "loss"}>
               ₹{pnl.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
-              <small style={{ marginLeft: "8px" }}>
+              <small
+                className={isProfit ? "profit" : "loss"}
+                style={{ marginLeft: "8px" }}
+              >
                 {isProfit ? "+" : ""}
                 {pnlPercent.toFixed(2)}%
               </small>
