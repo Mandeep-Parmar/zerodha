@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const holdingSchema = mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -24,10 +29,6 @@ const holdingSchema = mongoose.Schema({
   day: {
     type: String,
     required: true,
-  },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
   },
 });
 

@@ -4,6 +4,7 @@ import OrderModel from "../models/OrderModel.js";
 export const placeOrder = async (req, res) => {
   try {
     const { name, qty, price, mode } = req.body;
+    const userId = req.user.id;
 
     // ================= VALIDATION =================
     if (!name || !qty || !price || !mode) {
@@ -19,7 +20,7 @@ export const placeOrder = async (req, res) => {
     }
 
     // 1. Find existing holding first
-    let existingHolding = await HoldingModel.findOne({ name });
+    let existingHolding = await HoldingModel.findOne({ name, userId });
 
     // ===== SELL VALIDATION =====
     if (mode === "SELL") {
@@ -40,6 +41,7 @@ export const placeOrder = async (req, res) => {
 
     // 2. Save Order ONLY AFTER validation
     const newOrder = new OrderModel({
+      userId,
       name,
       qty,
       price,
@@ -62,6 +64,7 @@ export const placeOrder = async (req, res) => {
         await existingHolding.save();
       } else {
         await HoldingModel.create({
+          userId,
           name,
           qty,
           avg: price,
@@ -77,7 +80,7 @@ export const placeOrder = async (req, res) => {
       const remainingQty = existingHolding.qty - qty;
 
       if (remainingQty === 0) {
-        await HoldingModel.deleteOne({ name });
+        await HoldingModel.deleteOne({ _id: existingHolding._id });
       } else {
         existingHolding.qty = remainingQty;
         existingHolding.price = price;
@@ -98,7 +101,7 @@ export const placeOrder = async (req, res) => {
 
 export const getOrders = async (req, res) => {
   try {
-    const orders = await OrderModel.find();
+    const orders = await OrderModel.find({ userId: req.user.id });
     res.json(orders);
   } catch (error) {
     res.json({ success: false, message: "Failed to fetch orders" });

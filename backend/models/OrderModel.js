@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const orderSchema = mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -17,10 +22,6 @@ const orderSchema = mongoose.Schema({
     type: String,
     required: true,
     enum: ["BUY", "SELL"],
-  },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
   },
 });
 
