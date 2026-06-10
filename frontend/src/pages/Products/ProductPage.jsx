@@ -3,6 +3,7 @@ import Hero from "./Hero";
 import LeftSection from "./LeftSection";
 import RightSection from "./RightSection";
 import Universe from "./Universe";
+import OpenAccount from "../../components/OpenAccount";
 
 const ProductPage = () => {
   return (
@@ -52,6 +53,7 @@ const ProductPage = () => {
         blog.
       </p>
       <Universe />
+      <OpenAccount />
     </div>
   );
 };

@@ -87,12 +87,6 @@ const Universe = () => {
             mis-selling.
           </p>
         </div>
-
-        <div className="col-lg-8 col-md-10 col-sm-12">
-          <button className="btn btn-primary px-4 py-2 mt-5 m-auto fs-5">
-            Sign up for free
-          </button>
-        </div>
       </div>
     </div>
   );
