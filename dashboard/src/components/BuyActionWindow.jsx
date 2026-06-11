@@ -6,7 +6,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const BuyActionWindow = ({ uid }) => {
-  const { handleCloseBuyWindow, orderMode, triggerRefresh } = useContext(GeneralContext);
+  const { handleCloseBuyWindow, orderMode, triggerRefresh } =
+    useContext(GeneralContext);
 
   const [qty, setQty] = useState(1);
   const [price, setPrice] = useState(0);
@@ -39,6 +40,8 @@ const BuyActionWindow = ({ uid }) => {
     }
   };
 
+  const marginRequired = qty * price;
+
   return (
     <div className="container" id="buy-window" draggable="true">
       <div className="regular-order">
@@ -68,7 +71,10 @@ const BuyActionWindow = ({ uid }) => {
       </div>
 
       <div className="buttons">
-        <span>Margin required ₹140.65</span>
+        Margin required ₹
+        {marginRequired.toLocaleString("en-IN", {
+          minimumFractionDigits: 2,
+        })}
         <div>
           <button
             className={`btn ${orderMode === "BUY" ? "btn-blue" : "btn-red"}`}
