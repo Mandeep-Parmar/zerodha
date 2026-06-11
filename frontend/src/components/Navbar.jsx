@@ -5,8 +5,7 @@ const Navbar = () => {
   const token = localStorage.getItem("token");
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.clear();
 
     // Redirect to dashboard logout route
     const dashboardUrl =

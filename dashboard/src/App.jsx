@@ -59,8 +59,7 @@ const App = () => {
           setIsCheckingAuth(false);
         } else {
           // Token is invalid or expired
-          localStorage.removeItem("token");
-          localStorage.removeItem("user");
+          localStorage.clear();
           setToken("");
           redirectToLogin();
         }
@@ -68,8 +67,7 @@ const App = () => {
         console.error("Token verification failed:", error);
 
         // Invalid token → clear everything
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
+        localStorage.clear();
         setToken("");
         redirectToLogin();
       }

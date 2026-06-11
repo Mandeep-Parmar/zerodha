@@ -3,8 +3,7 @@ import { useEffect } from "react";
 const Logout = () => {
   useEffect(() => {
     // Clear dashboard storage
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.clear();
 
     // Redirect back to login app
     const frontendUrl =

@@ -29,8 +29,7 @@ const Menu = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.clear();
 
     // Redirect to frontend logout handler
     const frontendUrl =

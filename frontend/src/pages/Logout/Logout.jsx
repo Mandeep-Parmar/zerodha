@@ -3,8 +3,7 @@ import React, { useEffect } from "react";
 const Logout = () => {
   useEffect(() => {
     // Clear all user credentials from frontend localStorage
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.clear();
 
     // Redirect to login page
     window.location.href = "/login";
