@@ -94,35 +94,15 @@ const Funds = () => {
 
   return (
     <>
-      <div
-        className="funds"
-        style={{
-          marginBottom: "30px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <p style={{ margin: 0, color: "#666" }}>
-          Instant, zero-cost fund transfers with UPI
-        </p>
-        <div>
-          <button
-            className="btn btn-green"
-            onClick={handleAddFunds}
-            style={{
-              border: "none",
-              cursor: "pointer",
-              marginRight: "10px",
-              padding: "10px 20px",
-            }}
-          >
+      <div className="funds-container">
+        <p className="funds-desc">Instant, zero-cost fund transfers with UPI</p>
+        <div className="funds-buttons">
+          <button className="btn btn-green btn-action" onClick={handleAddFunds}>
             Add Funds
           </button>
           <button
-            className="btn btn-blue"
+            className="btn btn-blue btn-action"
             onClick={handleWithdrawFunds}
-            style={{ border: "none", cursor: "pointer", padding: "10px 20px" }}
           >
             Withdraw
           </button>
@@ -130,78 +110,33 @@ const Funds = () => {
       </div>
 
       <div className="row">
-        <div className="col" style={{ flexBasis: "100%" }}>
-          <span
-            style={{
-              borderBottom: "1px solid #f0f0f0",
-              paddingBottom: "10px",
-              display: "block",
-              marginBottom: "20px",
-            }}
-          >
-            <h4 style={{ margin: 0, fontSize: "1.1rem", color: "#2c3e50" }}>
-              Equity Funds Summary
-            </h4>
+        <div className="col col-full">
+          <span className="funds-title-wrapper">
+            <h4 className="funds-title">Equity Funds Summary</h4>
           </span>
 
-          <div
-            className="table"
-            style={{
-              border: "1px solid #eef2f5",
-              borderRadius: "8px",
-              padding: "20px",
-              background: "#fff",
-            }}
-          >
-            <div
-              className="data"
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                padding: "12px 0",
-                borderBottom: "1px solid #f5f6f8",
-              }}
-            >
-              <p style={{ margin: 0, color: "#7f8c8d" }}>Available Margin</p>
-              <p
-                className="imp colored"
-                style={{ margin: 0, fontWeight: "600", fontSize: "1.1rem" }}
-              >
+          <div className="funds-table">
+            <div className="funds-row divider-bottom">
+              <p className="funds-label">Available Margin</p>
+              <p className="funds-value highlight">
                 ₹
                 {availableMargin.toLocaleString("en-IN", {
                   minimumFractionDigits: 2,
                 })}
               </p>
             </div>
-            <div
-              className="data"
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                padding: "12px 0",
-                borderBottom: "1px solid #f5f6f8",
-              }}
-            >
-              <p style={{ margin: 0, color: "#7f8c8d" }}>
-                Used Margin (Invested in Holdings)
-              </p>
-              <p className="imp" style={{ margin: 0, fontWeight: "600" }}>
+            <div className="funds-row divider-bottom">
+              <p className="funds-label">Used Margin (Invested in Holdings)</p>
+              <p className="funds-value">
                 ₹
                 {usedMargin.toLocaleString("en-IN", {
                   minimumFractionDigits: 2,
                 })}
               </p>
             </div>
-            <div
-              className="data"
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                padding: "12px 0",
-              }}
-            >
-              <p style={{ margin: 0, color: "#7f8c8d" }}>Available Cash</p>
-              <p className="imp" style={{ margin: 0, fontWeight: "600" }}>
+            <div className="funds-row">
+              <p className="funds-label">Available Cash</p>
+              <p className="funds-value">
                 ₹
                 {availableMargin.toLocaleString("en-IN", {
                   minimumFractionDigits: 2,

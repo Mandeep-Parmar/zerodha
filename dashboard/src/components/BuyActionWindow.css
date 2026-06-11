@@ -226,3 +226,24 @@
 .btn-red:hover {
   background: #ff1a1a;
 }
+
+@media (max-width: 768px) {
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 250px;
+    left: 0 !important;
+    bottom: 0 !important;
+    position: fixed !important;
+    border-radius: 12px 12px 0 0 !important;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.15) !important;
+    z-index: 9999 !important;
+  }
+
+  .buttons {
+    position: static !important;
+    margin-top: 20px;
+    padding: 0 10px 10px 10px;
+  }
+}

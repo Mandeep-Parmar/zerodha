@@ -14,7 +14,11 @@ const WatchListItem = ({ stock }) => {
   };
 
   return (
-    <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <li
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={() => setShowWatchlistActions(!showWatchlistActions)}
+    >
       <div className="item">
         {/* Name in red or green */}
         <p className={stock.isDown ? "down" : "up"}>{stock.name}</p>
@@ -30,8 +34,10 @@ const WatchListItem = ({ stock }) => {
           <span className="price">{stock.price}</span>
         </div>
       </div>
-      
-      {showWatchlistActions && <WatchListActions uid={stock.name} stock={stock}/>}
+
+      {showWatchlistActions && (
+        <WatchListActions uid={stock.name} stock={stock} />
+      )}
     </li>
   );
 };

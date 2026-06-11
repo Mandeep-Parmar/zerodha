@@ -12,7 +12,7 @@ const WatchListActions = ({ uid, stock }) => {
   const [showAnalytics, setShowAnalytics] = useState(false);
 
   return (
-    <span className="actions">
+    <span className="actions" onClick={(e) => e.stopPropagation()}>
       <span>
         <Tooltip title="Buy (B)" placement="top" arrow>
           <button

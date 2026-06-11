@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, NavLink } from "react-router-dom";
 import Topbar from "./components/TopBar";
 import Summary from "./pages/Summary";
 import Orders from "./pages/Orders";
@@ -20,6 +20,15 @@ const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   // used to show loading screen while checking auth
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -103,11 +112,12 @@ const App = () => {
       <Topbar />
 
       <div className="dashboard-container">
-        <WatchList />
+        {!isMobile && <WatchList />}
 
         <div className="content">
           <Routes>
             <Route path="/" element={<Summary />} />
+            {isMobile && <Route path="/watchlist" element={<WatchList />} />}
             <Route path="/orders" element={<Orders />} />
             <Route path="/holdings" element={<Holdings />} />
             <Route path="/positions" element={<Positions />} />
@@ -120,6 +130,65 @@ const App = () => {
 
         {isBuyWindowOpen && <BuyActionWindow uid={selectedStockUID} />}
       </div>
+
+      {isMobile && (
+        <div className="bottom-nav">
+          <NavLink
+            to="/watchlist"
+            className={({ isActive }) =>
+              isActive ? "bottom-nav-item active" : "bottom-nav-item"
+            }
+          >
+            <i className="fa-solid fa-list-ul"></i>
+            <span>Watchlist</span>
+          </NavLink>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "bottom-nav-item active" : "bottom-nav-item"
+            }
+          >
+            <i className="fa-solid fa-chart-pie"></i>
+            <span>Dashboard</span>
+          </NavLink>
+          <NavLink
+            to="/orders"
+            className={({ isActive }) =>
+              isActive ? "bottom-nav-item active" : "bottom-nav-item"
+            }
+          >
+            <i className="fa-solid fa-book"></i>
+            <span>Orders</span>
+          </NavLink>
+          <NavLink
+            to="/holdings"
+            className={({ isActive }) =>
+              isActive ? "bottom-nav-item active" : "bottom-nav-item"
+            }
+          >
+            <i className="fa-solid fa-briefcase"></i>
+            <span>Holdings</span>
+          </NavLink>
+          <NavLink
+            to="/positions"
+            className={({ isActive }) =>
+              isActive ? "bottom-nav-item active" : "bottom-nav-item"
+            }
+          >
+            <i className="fa-solid fa-chart-line"></i>
+            <span>Positions</span>
+          </NavLink>
+          <NavLink
+            to="/funds"
+            className={({ isActive }) =>
+              isActive ? "bottom-nav-item active" : "bottom-nav-item"
+            }
+          >
+            <i className="fa-solid fa-wallet"></i>
+            <span>Funds</span>
+          </NavLink>
+        </div>
+      )}
     </>
   );
 };

@@ -1119,3 +1119,256 @@ hr {
   color: white;
   cursor: pointer;
 }
+
+/* Funds Page Classes */
+.funds-container {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.funds-desc {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.btn-action {
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.btn-action.btn-green {
+  margin-right: 10px;
+}
+
+.col-full {
+  flex-basis: 100% !important;
+}
+
+.funds-title-wrapper {
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 10px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.funds-title {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.funds-table {
+  border: 1px solid #eef2f5;
+  border-radius: 8px;
+  padding: 20px;
+  background: #fff;
+}
+
+.funds-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  width: 100%;
+}
+
+.funds-row.divider-bottom {
+  border-bottom: 1px solid #f5f6f8;
+}
+
+.funds-label {
+  margin: 0;
+  color: #7f8c8d;
+}
+
+.funds-value {
+  margin: 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.funds-value.highlight {
+  color: #4184f3;
+  font-size: 1.1rem;
+}
+
+/* Mobile Responsive Overrides */
+@media (max-width: 768px) {
+  /* Layout & Container */
+  .dashboard-container {
+    flex-direction: column;
+    height: auto;
+    align-items: stretch;
+  }
+
+  .content {
+    flex-basis: 100%;
+    width: 100%;
+    padding: 20px 15px 80px 15px; /* Clear bottom nav space */
+    overflow-y: visible;
+  }
+
+  /* Header (Topbar & Menu) */
+  .topbar-container {
+    height: auto;
+    padding: 10px 15px;
+  }
+
+  .indices-container {
+    display: none !important;
+  }
+
+  .menu-container {
+    flex-basis: 100%;
+    justify-content: space-between;
+  }
+
+  .menus ul,
+  .menus > hr {
+    display: none !important;
+  }
+
+  .profile {
+    margin-left: 0 !important;
+  }
+
+  .profile .username {
+    display: none !important;
+  }
+
+  .profile-dropdown {
+    right: 0;
+    top: 45px;
+  }
+
+  /* Layout grids */
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    margin-top: 15px;
+  }
+
+  .col {
+    flex-basis: 100% !important;
+  }
+
+  /* Summary Section Cards */
+  .section .data {
+    width: 100% !important;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .section .data hr {
+    display: none !important;
+  }
+
+  .section .data .first,
+  .section .data .second {
+    width: 100%;
+  }
+
+  .section .data .second p {
+    display: flex;
+    justify-content: space-between;
+    white-space: normal;
+  }
+
+  /* Responsive Tables */
+  .order-table {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 20px;
+    border: 1px solid #eef2f5;
+    border-radius: 4px;
+  }
+
+  .order-table table {
+    min-width: 600px;
+  }
+
+  /* Funds Component Styles */
+  .funds-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .funds-desc {
+    text-align: left;
+  }
+
+  .funds-buttons {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .funds-buttons button {
+    flex: 1;
+    margin-right: 0 !important;
+    text-align: center;
+  }
+
+  /* Watchlist Page Content */
+  .watchlist-container {
+    flex-basis: 100%;
+    width: 100%;
+    box-shadow: none;
+    padding: 10px;
+    padding-bottom: 80px;
+  }
+
+  /* Modals */
+  .modal {
+    width: 90% !important;
+    max-width: 450px !important;
+    min-height: auto !important;
+    box-sizing: border-box;
+  }
+
+  /* Mobile Bottom Navigation Bar */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #ffffff;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #666666;
+    font-size: 0.7rem;
+    gap: 4px;
+    flex: 1;
+    padding: 8px 0;
+    transition: color 0.15s ease-in-out;
+  }
+
+  .bottom-nav-item i {
+    font-size: 1.1rem;
+  }
+
+  .bottom-nav-item.active {
+    color: rgb(245, 104, 52);
+  }
+}
