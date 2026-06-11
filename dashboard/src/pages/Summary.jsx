@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { GeneralContext } from "../context/GeneralContext";
 
 const Summary = () => {
+  const { refreshTrigger } = useContext(GeneralContext);
   const [username, setUsername] = useState("User");
   const [holdings, setHoldings] = useState([]);
   const [marginAvailable, setMarginAvailable] = useState(100000);
@@ -35,7 +37,7 @@ const Summary = () => {
     };
 
     fetchData();
-  }, [backendUrl]);
+  }, [backendUrl, refreshTrigger]);
 
   // Calculate metrics
   const totalInvestment = holdings.reduce(

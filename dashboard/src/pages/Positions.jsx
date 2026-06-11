@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-
-import { useState, useEffect } from "react";
+import { GeneralContext } from "../context/GeneralContext";
 
 const Positions = () => {
+  const { refreshTrigger } = useContext(GeneralContext);
   const [positions, setPositions] = useState([]);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -18,7 +18,7 @@ const Positions = () => {
 
   useEffect(() => {
     fetchPostions();
-  }, []);
+  }, [refreshTrigger]);
 
   return (
     <>

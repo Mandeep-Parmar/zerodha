@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { GeneralContext } from "../context/GeneralContext";
 
 const Funds = () => {
+  const { refreshTrigger, triggerRefresh } = useContext(GeneralContext);
   const [funds, setFunds] = useState(100000);
   const [usedMargin, setUsedMargin] = useState(0);
   const [userEmail, setUserEmail] = useState("");
@@ -39,7 +41,7 @@ const Funds = () => {
 
   useEffect(() => {
     fetchData();
-  }, [backendUrl]);
+  }, [backendUrl, refreshTrigger]);
 
   const handleAddFunds = () => {
     const amountStr = prompt("Enter the amount of funds to add (₹):");
@@ -57,8 +59,9 @@ const Funds = () => {
       localStorage.setItem(`funds_${userEmail}`, updatedFunds.toString());
     }
     alert(
-      `₹${amount.toLocaleString("en-IN", { minimumFractionDigits: 2 })} added successfully!`,
+      `₹${amount.toLocaleString("en-IN", { minimumFractionDigits: 2 })} added successfully!`
     );
+    triggerRefresh();
   };
 
   const handleWithdrawFunds = () => {
@@ -82,8 +85,9 @@ const Funds = () => {
       localStorage.setItem(`funds_${userEmail}`, updatedFunds.toString());
     }
     alert(
-      `₹${amount.toLocaleString("en-IN", { minimumFractionDigits: 2 })} withdrawn successfully!`,
+      `₹${amount.toLocaleString("en-IN", { minimumFractionDigits: 2 })} withdrawn successfully!`
     );
+    triggerRefresh();
   };
 
   return (

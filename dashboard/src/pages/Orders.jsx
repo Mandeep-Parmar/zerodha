@@ -1,8 +1,10 @@
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { GeneralContext } from "../context/GeneralContext";
 
 const Orders = () => {
+  const { refreshTrigger } = useContext(GeneralContext);
   const [orders, setOrders] = useState([]);
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -18,7 +20,7 @@ const Orders = () => {
 
   useEffect(() => {
     fetchOrders();
-  }, []);
+  }, [refreshTrigger]);
 
   return (
     <div className="orders">

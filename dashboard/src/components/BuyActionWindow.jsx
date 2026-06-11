@@ -6,7 +6,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const BuyActionWindow = ({ uid }) => {
-  const { handleCloseBuyWindow, orderMode } = useContext(GeneralContext);
+  const { handleCloseBuyWindow, orderMode, triggerRefresh } = useContext(GeneralContext);
 
   const [qty, setQty] = useState(1);
   const [price, setPrice] = useState(0);
@@ -28,6 +28,7 @@ const BuyActionWindow = ({ uid }) => {
 
       if (res.data.success) {
         toast.success(res.data.message);
+        triggerRefresh();
         handleCloseBuyWindow();
       } else {
         toast.error(res.data.message);

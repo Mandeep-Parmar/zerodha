@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-
-import { useState, useEffect } from "react";
+import { GeneralContext } from "../context/GeneralContext";
 import { VerticalGraph } from "../components/VertialGraph";
 
 const Holdings = () => {
+  const { refreshTrigger } = useContext(GeneralContext);
   const [holdings, setHoldings] = useState([]);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -35,7 +35,7 @@ const Holdings = () => {
 
   useEffect(() => {
     fetchHoldings();
-  }, []);
+  }, [refreshTrigger]);
 
   const labels = holdings.map((subArray) => subArray["name"]);
 
