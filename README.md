@@ -7,7 +7,7 @@
 <img src="https://img.shields.io/badge/JWT-Authentication-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white" />
 <img src="https://img.shields.io/badge/Deployed-Vercel%20%2B%20Render-000000?style=for-the-badge&logo=vercel&logoColor=white" />
 
-# 📈 Zerodha Trading Platform — Full-Stack Clone
+# 📈 Zerodha Trading Platform (MERN Stack)
 
 **A full-stack trading platform inspired by Zerodha, built using the MERN stack.
 It allows users to authenticate, trade stocks (buy/sell), manage portfolios, and analyze performance through a modern UI and scalable backend.**
@@ -128,7 +128,7 @@ When a user logs in via the Portal App:
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/zerodha-clone.git
+git clone https://github.com/Mandeep-Parmar/zerodha.git
 cd zerodha-clone
 ```
 
@@ -188,9 +188,8 @@ npm run dev
 **Your Name**
 Full-Stack Developer
 
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yourusername)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/yourprofile)
-[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white)](https://yourportfolio.com)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Mandeep-Parmar)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mandeep-p-b44930327/)
 
 ---
 
