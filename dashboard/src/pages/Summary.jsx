@@ -6,7 +6,7 @@ const Summary = () => {
   const { refreshTrigger } = useContext(GeneralContext);
   const [username, setUsername] = useState("User");
   const [holdings, setHoldings] = useState([]);
-  const [marginAvailable, setMarginAvailable] = useState(100000);
+  const [totalFunds, setTotalFunds] = useState(100000);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
@@ -21,10 +21,10 @@ const Summary = () => {
           // Get user-specific cash balance from localStorage
           const cachedFunds = localStorage.getItem(`funds_${user.email}`);
           if (cachedFunds !== null) {
-            setMarginAvailable(Number(cachedFunds));
+            setTotalFunds(Number(cachedFunds));
           } else {
             localStorage.setItem(`funds_${user.email}`, "100000");
-            setMarginAvailable(100000);
+            setTotalFunds(100000);
           }
         }
 
@@ -52,6 +52,8 @@ const Summary = () => {
   const pnlPercent = totalInvestment > 0 ? (pnl / totalInvestment) * 100 : 0;
   const isProfit = pnl >= 0;
 
+  const availableMargin = totalFunds - totalInvestment;
+
   return (
     <>
       <div className="username">
@@ -67,8 +69,8 @@ const Summary = () => {
         <div className="data">
           <div className="first">
             <h3>
-              ₹
-              {marginAvailable.toLocaleString("en-IN", {
+              ₹ 
+              {availableMargin.toLocaleString("en-IN", {
                 minimumFractionDigits: 2,
               })}
             </h3>
@@ -90,7 +92,7 @@ const Summary = () => {
               Opening balance{" "}
               <span>
                 ₹
-                {marginAvailable.toLocaleString("en-IN", {
+                {totalFunds.toLocaleString("en-IN", {
                   minimumFractionDigits: 2,
                 })}
               </span>

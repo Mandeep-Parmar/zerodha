@@ -4,7 +4,7 @@ import { GeneralContext } from "../context/GeneralContext";
 
 const Funds = () => {
   const { refreshTrigger, triggerRefresh } = useContext(GeneralContext);
-  const [funds, setFunds] = useState(100000);
+  const [totalFunds, setTotalFunds] = useState(100000);
   const [usedMargin, setUsedMargin] = useState(0);
   const [userEmail, setUserEmail] = useState("");
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -20,10 +20,10 @@ const Funds = () => {
         // Get user-specific cash balance from localStorage
         const cachedFunds = localStorage.getItem(`funds_${user.email}`);
         if (cachedFunds !== null) {
-          setFunds(Number(cachedFunds));
+          setTotalFunds(Number(cachedFunds));
         } else {
           localStorage.setItem(`funds_${user.email}`, "100000");
-          setFunds(100000);
+          setTotalFunds(100000);
         }
       }
 
@@ -53,13 +53,13 @@ const Funds = () => {
       return;
     }
 
-    const updatedFunds = funds + amount;
-    setFunds(updatedFunds);
+    const updatedFunds = totalFunds + amount;
+    setTotalFunds(updatedFunds);
     if (userEmail) {
       localStorage.setItem(`funds_${userEmail}`, updatedFunds.toString());
     }
     alert(
-      `₹${amount.toLocaleString("en-IN", { minimumFractionDigits: 2 })} added successfully!`
+      `₹${amount.toLocaleString("en-IN", { minimumFractionDigits: 2 })} added successfully!`,
     );
     triggerRefresh();
   };
@@ -74,21 +74,23 @@ const Funds = () => {
       return;
     }
 
-    if (amount > funds) {
+    if (amount > totalFunds - usedMargin) {
       alert("Insufficient funds for withdrawal.");
       return;
     }
 
-    const updatedFunds = funds - amount;
-    setFunds(updatedFunds);
+    const updatedFunds = totalFunds - amount;
+    setTotalFunds(updatedFunds);
     if (userEmail) {
       localStorage.setItem(`funds_${userEmail}`, updatedFunds.toString());
     }
     alert(
-      `₹${amount.toLocaleString("en-IN", { minimumFractionDigits: 2 })} withdrawn successfully!`
+      `₹${amount.toLocaleString("en-IN", { minimumFractionDigits: 2 })} withdrawn successfully!`,
     );
     triggerRefresh();
   };
+
+  const availableMargin = totalFunds - usedMargin;
 
   return (
     <>
@@ -165,7 +167,10 @@ const Funds = () => {
                 className="imp colored"
                 style={{ margin: 0, fontWeight: "600", fontSize: "1.1rem" }}
               >
-                ₹{funds.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
+                ₹
+                {availableMargin.toLocaleString("en-IN", {
+                  minimumFractionDigits: 2,
+                })}
               </p>
             </div>
             <div
@@ -197,7 +202,10 @@ const Funds = () => {
             >
               <p style={{ margin: 0, color: "#7f8c8d" }}>Available Cash</p>
               <p className="imp" style={{ margin: 0, fontWeight: "600" }}>
-                ₹{funds.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
+                ₹
+                {availableMargin.toLocaleString("en-IN", {
+                  minimumFractionDigits: 2,
+                })}
               </p>
             </div>
           </div>
