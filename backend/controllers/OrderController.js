@@ -6,19 +6,6 @@ export const placeOrder = async (req, res) => {
     const { name, qty, price, mode } = req.body;
     const userId = req.user.id;
 
-    // ================= VALIDATION =================
-    if (!name || !qty || !price || !mode) {
-      return res.json({ success: false, message: "All fields are required" });
-    }
-
-    if (qty <= 0 || price <= 0) {
-      return res.json({ success: false, message: "Invalid qty or price" });
-    }
-
-    if (!["BUY", "SELL"].includes(mode)) {
-      return res.json({ success: false, message: "Invalid order mode" });
-    }
-
     // 1. Find existing holding first
     let existingHolding = await HoldingModel.findOne({ name, userId });
 

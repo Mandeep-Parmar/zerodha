@@ -6,34 +6,12 @@ export const registerUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
-    // validation
-    if (!username || !email || !password) {
-      return res.json({
-        success: false,
-        message: "All fields required",
-      });
-    }
-
     // check existing user
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
       return res.json({
         success: false,
         message: "User already exists",
-      });
-    }
-
-    if (password.length < 8) {
-      return res.json({
-        success: false,
-        message: "Password must be at least 8 characters",
-      });
-    }
-
-    if (!email.includes("@")) {
-      return res.json({
-        success: false,
-        message: "Invalid email format",
       });
     }
 
@@ -58,14 +36,6 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-
-    // validation
-    if (!email || !password) {
-      return res.json({
-        success: false,
-        message: "All fields required",
-      });
-    }
 
     const user = await UserModel.findOne({ email });
 
