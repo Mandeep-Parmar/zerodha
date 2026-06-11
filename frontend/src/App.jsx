@@ -12,11 +12,13 @@ import NotFound from "./components/NotFound";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <>
       <ToastContainer position="top-right" autoClose={3000} />
+      <ScrollToTop />
       <Navbar />
 
       <Routes>
