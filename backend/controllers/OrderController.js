@@ -6,6 +6,11 @@ export const placeOrder = async (req, res) => {
     const { name, qty, price, mode } = req.body;
     const userId = req.user.id;
 
+    const calculateNet = (price, avg) => {
+      const net = ((price - avg) / avg) * 100;
+      return net.toFixed(2) + "%";
+    };
+
     // 1. Find existing holding first
     let existingHolding = await HoldingModel.findOne({ name, userId });
 
@@ -48,6 +53,12 @@ export const placeOrder = async (req, res) => {
         existingHolding.qty = totalQty;
         existingHolding.price = price;
 
+        // UPDATE NET
+        existingHolding.net = calculateNet(price, existingHolding.avg);
+
+        // fake day
+        existingHolding.day = (Math.random() * 2 - 1).toFixed(2) + "%";
+
         await existingHolding.save();
       } else {
         await HoldingModel.create({
@@ -56,8 +67,8 @@ export const placeOrder = async (req, res) => {
           qty,
           avg: price,
           price,
-          net: "0%",
-          day: "0%",
+          net: "0.00%",
+          day: "0.00%",
         });
       }
     }
@@ -71,6 +82,11 @@ export const placeOrder = async (req, res) => {
       } else {
         existingHolding.qty = remainingQty;
         existingHolding.price = price;
+
+        // UPDATE NET AGAIN
+        existingHolding.net = calculateNet(price, existingHolding.avg);
+        existingHolding.day = (Math.random() * 2 - 1).toFixed(2) + "%";
+        
         await existingHolding.save();
       }
     }
